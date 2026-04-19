@@ -15,6 +15,7 @@
       --text: #2c2c2c;
       --muted: #6b6b6b;
       --link: #1a5276;
+      --green: #1a7a3a;
     }
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
@@ -24,6 +25,8 @@
       background: #fff;
       line-height: 1.7;
     }
+
+    /* ── TOP NAV ── */
     .topbar {
       background: var(--navy);
       color: #fff;
@@ -36,6 +39,7 @@
       position: sticky;
       top: 0;
       z-index: 100;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.3);
     }
     .topbar-name {
       font-family: 'EB Garamond', serif;
@@ -44,12 +48,12 @@
       padding: 14px 0;
       white-space: nowrap;
     }
-    .topbar nav { display: flex; flex-wrap: wrap; gap: 0; }
+    .topbar nav { display: flex; flex-wrap: wrap; }
     .topbar nav a {
-      color: rgba(255,255,255,0.78);
+      color: rgba(255,255,255,0.75);
       text-decoration: none;
-      font-size: 0.78rem;
-      letter-spacing: 0.07em;
+      font-size: 0.77rem;
+      letter-spacing: 0.08em;
       text-transform: uppercase;
       padding: 18px 11px;
       border-bottom: 2px solid transparent;
@@ -57,11 +61,11 @@
     }
     .topbar nav a:hover { color:#fff; border-bottom-color: var(--accent); }
 
-    /* HERO */
+    /* ── HERO ── */
     .hero-wrap { background: var(--light); border-bottom: 1px solid var(--mid); }
     .hero {
       max-width: 980px; margin: 0 auto;
-      padding: 52px 40px 44px;
+      padding: 52px 40px 48px;
       display: flex; gap: 44px; align-items: flex-start;
     }
     .hero-photo {
@@ -69,28 +73,49 @@
       object-fit: cover; object-position: top center;
       border: 3px solid var(--mid);
       flex-shrink: 0;
-      display: block;
     }
     .hero-info h1 {
       font-family: 'EB Garamond', serif;
-      font-size: 2.2rem; color: var(--navy);
-      line-height: 1.15; margin-bottom: 3px;
+      font-size: 2.3rem; color: var(--navy);
+      line-height: 1.1; margin-bottom: 4px;
     }
     .hero-title {
-      font-size: 0.88rem; color: var(--accent);
-      font-weight: 600; letter-spacing: 0.06em;
+      font-size: 0.82rem; color: var(--accent);
+      font-weight: 600; letter-spacing: 0.09em;
       text-transform: uppercase; margin-bottom: 10px;
     }
     .hero-affil {
-      font-size: 0.92rem; color: var(--muted); margin-bottom: 14px; line-height: 1.55;
+      font-size: 0.91rem; color: var(--muted);
+      margin-bottom: 14px; line-height: 1.55;
     }
     .hero-affil a { color: var(--link); text-decoration: none; }
     .hero-affil a:hover { text-decoration: underline; }
-    .hero-bio {
-      font-size: 0.94rem; color: var(--text);
-      max-width: 580px; margin-bottom: 20px; line-height: 1.65;
+
+    /* POSTDOC SEEKING BADGE */
+    .seeking-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: linear-gradient(135deg, #1a2640 0%, #2a3f60 100%);
+      color: #fff;
+      padding: 9px 18px;
+      border-radius: 3px;
+      font-size: 0.82rem;
+      letter-spacing: 0.04em;
+      margin-bottom: 18px;
+      border-left: 3px solid var(--accent);
     }
-    .chips { display: flex; flex-wrap: wrap; gap: 8px; }
+    .seeking-badge .dot {
+      width: 7px; height: 7px;
+      background: #4ceb82;
+      border-radius: 50%;
+      animation: pulse 1.8s infinite;
+      flex-shrink: 0;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.5; transform: scale(1.4); }
+    }
+
+    .chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 4px; }
     .chips a {
       font-size: 0.8rem; color: var(--link);
       border: 1px solid var(--link);
@@ -99,28 +124,78 @@
       transition: background 0.15s, color 0.15s;
     }
     .chips a:hover { background: var(--link); color: #fff; }
+    .chips a.primary {
+      background: var(--accent); color: #fff; border-color: var(--accent);
+    }
+    .chips a.primary:hover { background: #922f00; }
 
-    /* LAYOUT */
+    /* ── LAYOUT ── */
     .container { max-width: 980px; margin: 0 auto; padding: 0 40px 70px; }
 
-    /* SECTION */
+    /* ── SECTION ── */
     section {
       margin-top: 50px;
       padding-top: 26px;
       border-top: 2px solid var(--mid);
+      scroll-margin-top: 58px;
     }
     section h2 {
       font-family: 'EB Garamond', serif;
       font-size: 1.5rem; color: var(--navy);
-      margin-bottom: 18px; letter-spacing: 0.01em;
+      margin-bottom: 16px;
     }
     section h3 {
-      font-size: 0.8rem; text-transform: uppercase;
+      font-size: 0.78rem; text-transform: uppercase;
       letter-spacing: 0.12em; color: var(--muted);
       margin: 24px 0 10px; font-weight: 600;
     }
 
-    /* RESEARCH INTERESTS */
+    /* ── ABOUT — impact paragraphs ── */
+    .about-lead {
+      font-size: 1.06rem;
+      color: var(--navy);
+      font-family: 'EB Garamond', serif;
+      line-height: 1.75;
+      margin-bottom: 14px;
+      font-style: italic;
+    }
+    .about-body {
+      font-size: 0.94rem;
+      color: var(--text);
+      margin-bottom: 11px;
+      line-height: 1.7;
+    }
+    .about-body strong { color: var(--navy); }
+
+    /* ── STAT STRIP ── */
+    .stat-strip {
+      display: flex; flex-wrap: wrap; gap: 0;
+      border: 1px solid var(--mid);
+      border-radius: 3px;
+      overflow: hidden;
+      margin: 20px 0 0;
+    }
+    .stat-item {
+      flex: 1 1 140px;
+      padding: 16px 20px;
+      border-right: 1px solid var(--mid);
+      background: var(--light);
+      text-align: center;
+    }
+    .stat-item:last-child { border-right: none; }
+    .stat-num {
+      font-family: 'EB Garamond', serif;
+      font-size: 1.85rem; color: var(--accent);
+      line-height: 1; font-weight: 600;
+      display: block;
+    }
+    .stat-label {
+      font-size: 0.75rem; color: var(--muted);
+      text-transform: uppercase; letter-spacing: 0.08em;
+      display: block; margin-top: 3px;
+    }
+
+    /* ── RESEARCH INTERESTS ── */
     .tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 8px; }
     .tags span {
       background: var(--light); border: 1px solid var(--mid);
@@ -128,24 +203,13 @@
       border-radius: 2px; color: var(--navy);
     }
 
-    /* ACHIEVEMENTS */
-    .achiev-list { margin-top: 6px; }
-    .achiev-item {
-      display: flex; gap: 12px; align-items: baseline;
-      padding: 8px 0; border-bottom: 1px solid var(--mid);
-      font-size: 0.92rem;
-    }
-    .achiev-item .badge {
-      font-size: 1.05rem; flex-shrink: 0;
-    }
-
-    /* TIMELINE */
+    /* ── TIMELINE ── */
     .timeline { margin-top: 4px; }
     .tl-item {
       display: grid;
-      grid-template-columns: 160px 1fr;
+      grid-template-columns: 165px 1fr;
       gap: 6px 24px;
-      margin-bottom: 18px;
+      margin-bottom: 20px;
     }
     .tl-year {
       font-size: 0.8rem; color: var(--muted);
@@ -157,16 +221,16 @@
       color: var(--navy); display: block; margin-bottom: 1px;
     }
     .tl-body .inst {
-      font-size: 0.86rem; color: var(--muted); display: block; margin-bottom: 3px;
+      font-size: 0.86rem; color: var(--muted);
+      display: block; margin-bottom: 4px;
     }
-    .tl-body ul {
-      margin: 6px 0 0 16px;
-    }
+    .tl-body ul { margin: 5px 0 0 16px; }
     .tl-body ul li {
-      font-size: 0.88rem; color: var(--text); margin-bottom: 4px; line-height: 1.5;
+      font-size: 0.88rem; color: var(--text);
+      margin-bottom: 4px; line-height: 1.55;
     }
 
-    /* PUBLICATIONS */
+    /* ── PUBLICATIONS ── */
     .pub-item {
       margin-bottom: 18px;
       padding-left: 14px;
@@ -179,12 +243,13 @@
     }
     .pub-authors strong { color: var(--navy); font-weight: 700; }
     .pub-title-link {
-      font-size: 0.94rem; font-weight: 600; color: var(--navy);
-      text-decoration: none; display: block; line-height: 1.45; margin-bottom: 3px;
+      font-size: 0.93rem; font-weight: 600; color: var(--navy);
+      text-decoration: none; display: block;
+      line-height: 1.45; margin-bottom: 3px;
     }
     .pub-title-link:hover { color: var(--accent); text-decoration: underline; }
     .pub-title-nolink {
-      font-size: 0.94rem; font-weight: 600; color: var(--navy);
+      font-size: 0.93rem; font-weight: 600; color: var(--navy);
       display: block; line-height: 1.45; margin-bottom: 3px;
     }
     .pub-venue {
@@ -192,24 +257,26 @@
     }
     .pub-venue em { font-style: italic; }
     .badge-pub {
-      display: inline-block; font-size: 0.72rem;
+      display: inline-block; font-size: 0.71rem;
       padding: 1px 8px; border-radius: 2px;
       margin-left: 6px; vertical-align: middle;
       font-weight: 600; letter-spacing: 0.04em;
     }
-    .badge-pub.review {
-      background: #fef5ee; border: 1px solid #f0c09a; color: var(--accent);
-    }
-    .badge-pub.submitted {
-      background: #f0f4ff; border: 1px solid #aabde0; color: #2244aa;
-    }
-    .badge-pub.published {
-      background: #edfaf0; border: 1px solid #8ecfa4; color: #1a7a3a;
-    }
+    .badge-pub.review { background: #fef5ee; border: 1px solid #f0c09a; color: var(--accent); }
+    .badge-pub.submitted { background: #f0f4ff; border: 1px solid #aabde0; color: #2244aa; }
+    .badge-pub.published { background: #edfaf0; border: 1px solid #8ecfa4; color: var(--green); }
     .pub-doi { font-size: 0.8rem; color: var(--link); text-decoration: none; }
     .pub-doi:hover { text-decoration: underline; }
 
-    /* SKILLS GRID */
+    /* ── ACHIEVEMENTS ── */
+    .achiev-item {
+      display: flex; gap: 12px; align-items: flex-start;
+      padding: 9px 0; border-bottom: 1px solid var(--mid);
+      font-size: 0.92rem;
+    }
+    .achiev-item .badge { font-size: 1.1rem; flex-shrink: 0; margin-top: 2px; }
+
+    /* ── SKILLS ── */
     .skills-grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(215px, 1fr));
@@ -220,14 +287,86 @@
       padding: 11px 16px; border-radius: 2px;
     }
     .skill-card .sk-cat {
-      font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.1em;
-      color: var(--accent); font-weight: 600; margin-bottom: 4px;
+      font-size: 0.71rem; text-transform: uppercase;
+      letter-spacing: 0.1em; color: var(--accent);
+      font-weight: 600; margin-bottom: 5px;
     }
     .skill-card .sk-items {
-      font-size: 0.86rem; color: var(--navy); line-height: 1.5;
+      font-size: 0.86rem; color: var(--navy); line-height: 1.55;
     }
 
-    /* CONTACT TABLE */
+    /* ── GALLERY ── */
+    .gallery-intro {
+      font-size: 0.94rem; color: var(--text);
+      margin-bottom: 20px; line-height: 1.65;
+    }
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 16px;
+    }
+    .gallery-card {
+      border: 1px solid var(--mid);
+      border-radius: 3px;
+      overflow: hidden;
+      background: var(--light);
+      transition: box-shadow 0.2s, transform 0.2s;
+    }
+    .gallery-card:hover {
+      box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+      transform: translateY(-2px);
+    }
+    .gallery-placeholder {
+      width: 100%;
+      aspect-ratio: 4/3;
+      background: linear-gradient(135deg, #d8d2c6 0%, #c8c0b0 100%);
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      color: var(--muted);
+      font-size: 0.82rem;
+      text-align: center;
+      padding: 16px;
+      gap: 10px;
+    }
+    .gallery-placeholder .gicon {
+      font-size: 2.2rem; opacity: 0.5;
+    }
+    .gallery-placeholder .gtext {
+      font-style: italic; font-size: 0.78rem;
+      opacity: 0.7;
+    }
+    .gallery-img {
+      width: 100%;
+      aspect-ratio: 4/3;
+      object-fit: cover;
+      display: block;
+    }
+    .gallery-cap {
+      padding: 10px 14px 12px;
+    }
+    .gallery-cap strong {
+      font-size: 0.88rem; color: var(--navy);
+      display: block; margin-bottom: 2px;
+    }
+    .gallery-cap span {
+      font-size: 0.8rem; color: var(--muted);
+    }
+    .gallery-upload-note {
+      margin-top: 18px;
+      padding: 12px 18px;
+      background: #f0f4ff;
+      border: 1px dashed #aabde0;
+      border-radius: 3px;
+      font-size: 0.85rem;
+      color: #2244aa;
+      line-height: 1.6;
+    }
+    .gallery-upload-note code {
+      background: #dce6f5; padding: 1px 6px;
+      border-radius: 2px; font-size: 0.82rem;
+    }
+
+    /* ── CONTACT ── */
     .ctable { margin-top: 8px; border-collapse: collapse; }
     .ctable tr td {
       font-size: 0.9rem; padding: 6px 18px 6px 0;
@@ -245,35 +384,43 @@
     .ref-grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-      gap: 16px; margin-top: 6px;
+      gap: 14px; margin-top: 6px;
     }
     .ref-card {
       background: var(--light); border: 1px solid var(--mid);
       padding: 14px 18px; border-radius: 2px;
     }
-    .ref-card strong { font-size: 0.95rem; color: var(--navy); display: block; margin-bottom: 2px; }
-    .ref-card .ref-role { font-size: 0.83rem; color: var(--muted); font-style: italic; margin-bottom: 6px; }
-    .ref-card a { font-size: 0.83rem; color: var(--link); text-decoration: none; }
+    .ref-card strong {
+      font-size: 0.94rem; color: var(--navy);
+      display: block; margin-bottom: 2px;
+    }
+    .ref-card .ref-role {
+      font-size: 0.82rem; color: var(--muted);
+      font-style: italic; margin-bottom: 6px;
+    }
+    .ref-card a { font-size: 0.82rem; color: var(--link); text-decoration: none; }
     .ref-card a:hover { text-decoration: underline; }
 
     footer {
-      background: var(--navy); color: rgba(255,255,255,0.45);
+      background: var(--navy); color: rgba(255,255,255,0.4);
       text-align: center; font-size: 0.77rem;
-      padding: 20px; margin-top: 0;
+      padding: 22px; margin-top: 0;
     }
 
     @media (max-width: 680px) {
-      .hero { flex-direction: column; padding: 28px 20px; gap: 24px; }
+      .hero { flex-direction: column; padding: 28px 20px; gap: 22px; }
       .container { padding: 0 20px 50px; }
       .topbar { padding: 0 16px; }
-      .topbar-name { font-size: 1rem; }
       .tl-item { grid-template-columns: 1fr; }
       .tl-year { text-align: left; }
+      .stat-strip { flex-direction: column; }
+      .stat-item { border-right: none; border-bottom: 1px solid var(--mid); }
     }
   </style>
 </head>
 <body>
 
+<!-- TOP NAV -->
 <div class="topbar">
   <div class="topbar-name">Rahul Singh</div>
   <nav>
@@ -282,6 +429,7 @@
     <a href="#publications">Publications</a>
     <a href="#education">Education</a>
     <a href="#experience">Experience</a>
+    <a href="#gallery">Gallery</a>
     <a href="#achievements">Achievements</a>
     <a href="#skills">Skills</a>
     <a href="#contact">Contact</a>
@@ -298,19 +446,16 @@
       <h1>Rahul Singh</h1>
       <div class="hero-title">PhD Researcher &mdash; Control &amp; Power Electronics</div>
       <div class="hero-affil">
-        Department of Electrical Engineering<br/>
-        Indian Institute of Technology Jodhpur (IIT Jodhpur)<br/>
+        Department of Electrical Engineering &nbsp;&middot;&nbsp; IIT Jodhpur, India<br/>
         Supervisor: <a href="mailto:df@iitj.ac.in">Prof. Deepakkumar M. Fulwani</a>
+        &nbsp;&middot;&nbsp; Thesis submission: May 2026
       </div>
-      <p class="hero-bio">
-        My research focuses on advanced sensorless control strategies for electric vehicle drivetrains
-        and industrial motor drives, with expertise in sliding mode control, MRAS-based estimation,
-        and real-time hardware implementation on dSPACE and STM32 platforms.
-        I have <strong>10+ publications</strong> in IEEE and Elsevier venues and industry experience
-        as a Senior Motor Control Engineer.
-      </p>
+      <div class="seeking-badge">
+        <span class="dot"></span>
+        Actively seeking Postdoctoral Positions in Power Electronics &amp; Control
+      </div>
       <div class="chips">
-        <a href="mailto:singh.67@iitj.ac.in">✉ singh.67@iitj.ac.in</a>
+        <a class="primary" href="mailto:singh.67@iitj.ac.in">✉ singh.67@iitj.ac.in</a>
         <a href="https://scholar.google.com/citations?user=Uf0lQlIAAAAJ&hl=en" target="_blank">Google Scholar</a>
         <a href="https://www.linkedin.com/in/rahul-singh-2b5bb8b5/" target="_blank">LinkedIn</a>
         <a href="#contact">More Contacts ↓</a>
@@ -321,29 +466,74 @@
 
 <div class="container">
 
-  <!-- ABOUT -->
+  <!-- ── ABOUT ── -->
   <section id="about">
     <h2>About</h2>
-    <p style="font-size:0.94rem;margin-bottom:10px;">
-      I am a PhD researcher at IIT Jodhpur specialising in Control &amp; Power Electronics under the supervision of
-      Prof. Deepakkumar M. Fulwani. My doctoral work centres on developing advanced sensorless control
-      strategies — including Integral Sliding Mode Control (ISMC), MRAS-based estimation, and Adaptive Super-Twisting
-      SMC — for electric vehicle (EV) drivetrains and industrial motor drives, with a particular focus on
-      PMaSynRM drives using FOC and MTPA.
+
+    <p class="about-lead">
+      I design and build control systems for inverter-fed electric drives — from theoretical formulation
+      to full hardware validation — with a focus on making drives robust under the unpredictable conditions
+      of real-world electric vehicle and industrial applications.
     </p>
-    <p style="font-size:0.94rem;margin-bottom:10px;">
-      I hold an M.Tech (Power Systems &amp; Drives, CPI: 8.66) and B.Tech (Electrical Engineering, CPI: 8.52)
-      from Aligarh Muslim University, Aligarh, and a PhD (CGPA: 8.25, Honours) from IIT Jodhpur.
-      I am a three-time GATE qualifier (2016–2018) and a recipient of the
-      <strong>1st Prize at the INAE-SERB Youth Conclave 2022</strong> for a technical paper presentation.
+
+    <p class="about-body">
+      My PhD research at IIT Jodhpur centres on <strong>nonlinear control for electric motor drives</strong>
+      under practical operating conditions: load disturbances, parameter variations, and speed transients.
+      I have developed integral sliding mode controllers (ISMC, ASISMC, ASTISMC) for sensorless EV drivetrains
+      and validated them experimentally on <strong>dSPACE (1202/1104) and OPAL-RT</strong> platforms under
+      standard drive cycles (NEDC, UDDS). This work sits at the intersection of control theory and
+      power electronics hardware — a combination I find compelling and that I believe is critical for
+      the next generation of converter-dominated energy systems.
     </p>
-    <p style="font-size:0.94rem;">
-      Alongside research, I serve as Senior Motor Control Engineer at <strong>Reakar Electric India</strong>
-      (Sept 2025–Present) and was President of the EK Bharat Shrestha Bharat (EBSB) chapter at IIT Jodhpur (2021–2025).
+
+    <p class="about-body">
+      On the hardware side, I led the design and development of a <strong>3.7 kW PMaSynRM motor drive
+      system</strong> (industry-sponsored by Bharat Bijlee), covering gate driver design, DC-DC auxiliary
+      power supplies, shunt-based current sensing, PCB layout, and full system integration with
+      real-time control on STM32F407. I also contributed to establishing the
+      <strong>electric drive laboratory at IIT Jodhpur</strong>, building complete experimental setups
+      including inverters, sensing systems, and motor drive platforms from scratch.
     </p>
+
+    <p class="about-body">
+      In parallel, I work as a <strong>Senior Motor Control Engineer at Reakar Electric India</strong>,
+      focusing on controller validation, encoder signal processing, and model-based analysis of
+      motor-converter systems under practical constraints — strengthening my ability to handle
+      measurement noise, system nonlinearities, and implementation challenges.
+    </p>
+
+    <p class="about-body">
+      I am currently in the final stage of my PhD (thesis submission: <strong>May 2026</strong>) and
+      am actively seeking <strong>postdoctoral positions</strong> in power electronics, electric drives,
+      microgrids, and energy management. My background in control design, power electronics hardware,
+      and experimental validation equips me to contribute quickly and independently to a research group.
+    </p>
+
+    <div class="stat-strip">
+      <div class="stat-item">
+        <span class="stat-num">10+</span>
+        <span class="stat-label">Publications</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-num">4</span>
+        <span class="stat-label">IEEE Journal Papers</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-num">3.7 kW</span>
+        <span class="stat-label">Drive System Built</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-num">3&times;</span>
+        <span class="stat-label">GATE Qualified</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-num">2026</span>
+        <span class="stat-label">Thesis Submission</span>
+      </div>
+    </div>
   </section>
 
-  <!-- RESEARCH INTERESTS -->
+  <!-- ── RESEARCH INTERESTS ── -->
   <section id="research">
     <h2>Research Interests</h2>
     <div class="tags">
@@ -355,7 +545,7 @@
       <span>MTPA Control</span>
       <span>PMaSynRM Drives</span>
       <span>Active Disturbance Rejection</span>
-      <span>Electric Vehicle Drivetrains (E2W / E3W)</span>
+      <span>EV Drivetrains (E2W / E3W)</span>
       <span>Industrial Motor Drives</span>
       <span>DC/AC Microgrids</span>
       <span>Solar PV Energy Management</span>
@@ -364,7 +554,7 @@
     </div>
   </section>
 
-  <!-- PUBLICATIONS -->
+  <!-- ── PUBLICATIONS ── -->
   <section id="publications">
     <h2>Publications</h2>
 
@@ -421,9 +611,7 @@
     <div class="pub-item">
       <div class="pub-authors"><strong>R. Singh</strong> and D. Fulwani</div>
       <span class="pub-title-nolink">Maximum torque per ampere adaptive robust control of PMaSynRM drives under industrial loading conditions</span>
-      <div class="pub-venue">
-        2026. <span class="badge-pub submitted">To Be Submitted</span>
-      </div>
+      <div class="pub-venue">2026. <span class="badge-pub submitted">To Be Submitted</span></div>
     </div>
 
     <h3>Book Chapters</h3>
@@ -465,10 +653,9 @@
         &nbsp;<a class="pub-doi" href="https://doi.org/10.1109/PEDES56012.2022.10080494" target="_blank">DOI: 10.1109/PEDES56012.2022.10080494</a>
       </div>
     </div>
-
   </section>
 
-  <!-- EDUCATION -->
+  <!-- ── EDUCATION ── -->
   <section id="education">
     <h2>Education</h2>
     <div class="timeline">
@@ -477,9 +664,9 @@
         <div class="tl-year">2019 &ndash; 2026</div>
         <div class="tl-body">
           <strong>PhD in Control &amp; Power Electronics</strong>
-          <span class="inst">Indian Institute of Technology (IIT) Jodhpur &mdash; CGPA: 8.25 (Honours)</span>
+          <span class="inst">Indian Institute of Technology Jodhpur &mdash; CGPA: 8.25 (Honours)</span>
           Supervisor: Prof. Deepakkumar M. Fulwani<br/>
-          <small style="color:var(--muted)">Thesis focus: Sensorless control of PMaSynRM drives for EV and industrial applications</small>
+          <small style="color:var(--muted)">Thesis: Sensorless control of PMaSynRM drives for EV and industrial applications &middot; Submission: May 2026</small>
         </div>
       </div>
 
@@ -503,7 +690,7 @@
     </div>
   </section>
 
-  <!-- EXPERIENCE -->
+  <!-- ── EXPERIENCE ── -->
   <section id="experience">
     <h2>Experience</h2>
     <div class="timeline">
@@ -515,8 +702,9 @@
           <span class="inst">Reakar Electric India</span>
           <ul>
             <li>Controller verification and validation using real-time hardware data</li>
-            <li>Encoder calibration and signal filtering</li>
-            <li>Motor modelling and validation of embedded control algorithms</li>
+            <li>Encoder calibration and signal filtering for precision position sensing</li>
+            <li>Motor modelling and model-based analysis of motor-converter systems</li>
+            <li>Handling practical implementation issues: measurement noise, nonlinearities, and embedded constraints</li>
           </ul>
         </div>
       </div>
@@ -525,25 +713,26 @@
         <div class="tl-year">2019 &ndash; 2026</div>
         <div class="tl-body">
           <strong>PhD Researcher</strong>
-          <span class="inst">IIT Jodhpur (Company-Sponsored by Bharat Bijlee)</span>
+          <span class="inst">IIT Jodhpur &nbsp;&middot;&nbsp; Industry-sponsored project by Bharat Bijlee</span>
           <ul>
-            <li>Designed and built a complete 3.7 kW PMaSynRM motor drive system including PCB schematics, gate driver circuits, auxiliary DC-DC power supply, and shunt-based current sensing</li>
-            <li>Developed sensorless control strategies (ISMC, ASISMC, ASTISMC) for EV drivetrains targeting load variation, parameter uncertainty, and speed oscillations</li>
-            <li>Applied FOC &amp; MTPA frameworks to PMaSynRM drives for improved efficiency</li>
-            <li>Validated all strategies on dSPACE/MicroLabBox (1202, 1104) under NEDC and UDDS driving cycles</li>
-            <li>Utilised STM32F407 microcontroller for real-time embedded motor control</li>
+            <li>Designed and built a complete <strong>3.7 kW PMaSynRM motor drive system</strong> including PCB schematics, gate driver circuits, auxiliary DC-DC power supply, and shunt-based current sensing</li>
+            <li>Developed sensorless ISMC, ASISMC, and ASTISMC controllers for EV drivetrains under load variation, parameter uncertainty, and speed oscillations</li>
+            <li>Applied FOC &amp; MTPA frameworks to PMaSynRM drives for improved efficiency under nonlinear motor behaviour</li>
+            <li>Validated all strategies on <strong>dSPACE/MicroLabBox (1202, 1104)</strong> under NEDC and UDDS driving cycles</li>
+            <li>Implemented real-time control on <strong>STM32F407</strong> microcontroller</li>
+            <li>Contributed to establishing the <strong>electric drive laboratory at IIT Jodhpur</strong></li>
           </ul>
         </div>
       </div>
 
       <div class="tl-item">
-        <div class="tl-year">2018 &ndash; 2019</div>
+        <div class="tl-year">2017 &ndash; 2019</div>
         <div class="tl-body">
-          <strong>M.Tech Research / Intern</strong>
-          <span class="inst">AMU Aligarh</span>
+          <strong>M.Tech Research</strong>
+          <span class="inst">Aligarh Muslim University, Aligarh</span>
           <ul>
-            <li>Developed supervisory control for residential microgrids managing power flow between solar, battery, grid, and loads using a low-cost Arduino controller</li>
-            <li>Prioritised critical loads to maintain supply under limited energy conditions, reducing grid dependence</li>
+            <li>Developed and experimentally implemented a supervisory control system for residential microgrids on a low-cost Arduino platform</li>
+            <li>Managed power flow between solar PV, battery storage, grid supply, and prioritised critical loads under limited energy conditions</li>
           </ul>
         </div>
       </div>
@@ -551,10 +740,107 @@
     </div>
   </section>
 
-  <!-- ACHIEVEMENTS -->
+  <!-- ── GALLERY ── -->
+  <section id="gallery">
+    <h2>Laboratory &amp; Experimental Setup</h2>
+    <p class="gallery-intro">
+      A significant part of my PhD work involved <strong>designing, building, and validating
+      complete hardware experimental setups</strong> from scratch — including a 3.7 kW PMaSynRM
+      motor drive system, inverter hardware, sensing circuits, and real-time dSPACE/STM32
+      control platforms. The gallery below documents this work.
+      I also contributed to establishing the electric drive laboratory at IIT Jodhpur.
+    </p>
+
+    <div class="gallery-grid">
+
+      <div class="gallery-card">
+        <div class="gallery-placeholder">
+          <span class="gicon">🔌</span>
+          <strong style="font-size:0.86rem;color:var(--navy)">3.7 kW PMaSynRM Drive System</strong>
+          <span class="gtext">Replace with your hardware photo<br/>(see instructions below)</span>
+        </div>
+        <div class="gallery-cap">
+          <strong>3.7 kW Motor Drive System</strong>
+          <span>Complete PMaSynRM drive with custom PCB, gate drivers, and STM32F407 real-time control — Bharat Bijlee sponsored project</span>
+        </div>
+      </div>
+
+      <div class="gallery-card">
+        <div class="gallery-placeholder">
+          <span class="gicon">⚡</span>
+          <strong style="font-size:0.86rem;color:var(--navy)">dSPACE Validation Setup</strong>
+          <span class="gtext">Replace with your dSPACE lab photo</span>
+        </div>
+        <div class="gallery-cap">
+          <strong>dSPACE MicroLabBox Validation</strong>
+          <span>Real-time validation of ISMC and ASISMC controllers under NEDC &amp; UDDS driving cycles using dSPACE 1202/1104</span>
+        </div>
+      </div>
+
+      <div class="gallery-card">
+        <div class="gallery-placeholder">
+          <span class="gicon">🛠️</span>
+          <strong style="font-size:0.86rem;color:var(--navy)">PCB &amp; Gate Driver Design</strong>
+          <span class="gtext">Replace with PCB/hardware photo</span>
+        </div>
+        <div class="gallery-cap">
+          <strong>Custom PCB &amp; Gate Driver Circuits</strong>
+          <span>In-house designed gate driver board, auxiliary DC-DC power supply, and shunt-based current sensing circuits</span>
+        </div>
+      </div>
+
+      <div class="gallery-card">
+        <div class="gallery-placeholder">
+          <span class="gicon">📊</span>
+          <strong style="font-size:0.86rem;color:var(--navy)">Experimental Results</strong>
+          <span class="gtext">Replace with oscilloscope / Simulink results screenshot</span>
+        </div>
+        <div class="gallery-cap">
+          <strong>Controller Performance Results</strong>
+          <span>Speed tracking and torque ripple reduction under dynamic load using ASTISMC — validated against NEDC cycle</span>
+        </div>
+      </div>
+
+      <div class="gallery-card">
+        <div class="gallery-placeholder">
+          <span class="gicon">🔋</span>
+          <strong style="font-size:0.86rem;color:var(--navy)">Microgrid Lab Setup</strong>
+          <span class="gtext">Replace with microgrid lab photo</span>
+        </div>
+        <div class="gallery-cap">
+          <strong>Hybrid Microgrid Laboratory</strong>
+          <span>Lab-scale hybrid AC/DC microgrid with solar PV emulators, fuel cells, and battery banks — used for 18 teaching experiments</span>
+        </div>
+      </div>
+
+      <div class="gallery-card">
+        <div class="gallery-placeholder">
+          <span class="gicon">🏆</span>
+          <strong style="font-size:0.86rem;color:var(--navy)">INAE-SERB Conclave 2022</strong>
+          <span class="gtext">Replace with conference / award photo</span>
+        </div>
+        <div class="gallery-cap">
+          <strong>INAE-SERB Youth Conclave 2022</strong>
+          <span>1st Prize in Technical Paper Presentation — national-level recognition of PhD research work</span>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="gallery-upload-note">
+      <strong>📷 How to add your own photos/videos to this gallery:</strong><br/>
+      1. Upload your images (JPG/PNG) to your GitHub repository in a folder called <code>assets/images/</code><br/>
+      2. In the HTML file, replace any <code>&lt;div class="gallery-placeholder"&gt;...&lt;/div&gt;</code> block with:<br/>
+      &nbsp;&nbsp;<code>&lt;img class="gallery-img" src="assets/images/your-photo.jpg" alt="Description" /&gt;</code><br/>
+      3. For videos, upload to YouTube and replace the placeholder with an <code>&lt;iframe&gt;</code> embed.
+      Each card caption can be edited in the <code>&lt;div class="gallery-cap"&gt;</code> below it.
+    </div>
+  </section>
+
+  <!-- ── ACHIEVEMENTS ── -->
   <section id="achievements">
     <h2>Achievements &amp; Recognition</h2>
-    <div class="achiev-list">
+    <div>
       <div class="achiev-item">
         <span class="badge">🏆</span>
         <span><strong>1st Prize — INAE-SERB Youth Conclave 2022</strong> (Technical Paper Presentation)</span>
@@ -565,7 +851,7 @@
       </div>
       <div class="achiev-item">
         <span class="badge">🎯</span>
-        <span><strong>GATE Qualified — 3 times</strong> (2016, 2017, 2018) in Electrical Engineering</span>
+        <span><strong>GATE Qualified — 3 consecutive times</strong> (2016, 2017, 2018), Electrical Engineering</span>
       </div>
       <div class="achiev-item">
         <span class="badge">🏆</span>
@@ -586,52 +872,52 @@
     </div>
   </section>
 
-  <!-- SKILLS -->
+  <!-- ── SKILLS ── -->
   <section id="skills">
     <h2>Technical Skills</h2>
     <div class="skills-grid">
       <div class="skill-card">
         <div class="sk-cat">Motor Control</div>
-        <div class="sk-items">FOC, ISMC, MRAS, MTPA, Sensorless Estimation, Super-Twisting SMC</div>
+        <div class="sk-items">FOC, ISMC, ASISMC, ASTISMC, MRAS, MTPA, Sensorless Estimation</div>
       </div>
       <div class="skill-card">
-        <div class="sk-cat">Hardware Platforms</div>
-        <div class="sk-items">dSPACE MicroLabBox (1202, 1104), OPAL-RT (Basic), STM32F407, Arduino</div>
+        <div class="sk-cat">Real-Time Platforms</div>
+        <div class="sk-items">dSPACE MicroLabBox (1202, 1104), OPAL-RT, STM32F407, Arduino</div>
       </div>
       <div class="skill-card">
         <div class="sk-cat">Hardware Design</div>
-        <div class="sk-items">Gate drivers, PCB schematics, Power converters, Shunt current sensing, DC-DC aux supply</div>
+        <div class="sk-items">Gate drivers, PCB schematics, DC-DC converters, Shunt current sensing, Thermal monitoring</div>
       </div>
       <div class="skill-card">
         <div class="sk-cat">Software &amp; Tools</div>
         <div class="sk-items">MATLAB/Simulink, HOMER, OrCAD, ETAP</div>
       </div>
       <div class="skill-card">
-        <div class="sk-cat">Applications</div>
+        <div class="sk-cat">Application Domains</div>
         <div class="sk-items">EV Drivetrains (E2W/E3W), Industrial Motor Drives, Microgrid Optimisation, Solar PV</div>
       </div>
       <div class="skill-card">
-        <div class="sk-cat">Certifications</div>
-        <div class="sk-items">Level-6 Rooftop Solar PV Entrepreneur (NSDC/Skill India), EV Design Internship (Pantech)</div>
+        <div class="sk-cat">Certifications &amp; Training</div>
+        <div class="sk-items">Level-6 Solar PV Entrepreneur (NSDC/Skill India), EV Design (Pantech Solutions)</div>
       </div>
     </div>
   </section>
 
-  <!-- CONTACT -->
+  <!-- ── CONTACT ── -->
   <section id="contact">
     <h2>Contact</h2>
     <table class="ctable">
       <tr>
         <td>Email</td>
         <td>
-          <a href="mailto:singh.67@iitj.ac.in">singh.67@iitj.ac.in</a> &nbsp;|&nbsp;
+          <a href="mailto:singh.67@iitj.ac.in">singh.67@iitj.ac.in</a> &nbsp;&middot;&nbsp;
           <a href="mailto:rahulamu93@gmail.com">rahulamu93@gmail.com</a>
         </td>
       </tr>
       <tr>
         <td>Phone</td>
         <td>
-          <a href="tel:+917275915933">+91 72759 15933</a> &nbsp;|&nbsp;
+          <a href="tel:+917275915933">+91 72759 15933</a> &nbsp;&middot;&nbsp;
           <a href="tel:+918630255365">+91 86302 55365</a>
         </td>
       </tr>
@@ -672,7 +958,7 @@
 </div>
 
 <footer>
-  Rahul Singh &nbsp;&middot;&nbsp; PhD Researcher, IIT Jodhpur &nbsp;&middot;&nbsp; Last updated April 2026
+  Rahul Singh &nbsp;&middot;&nbsp; PhD Researcher, IIT Jodhpur &nbsp;&middot;&nbsp; Seeking Postdoctoral Positions &nbsp;&middot;&nbsp; Last updated April 2026
 </footer>
 
 </body>
