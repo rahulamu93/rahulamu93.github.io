@@ -1,913 +1,679 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Rahul Singh</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Rahul Singh | PhD Researcher, IIT Jodhpur</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,600;1,400&family=Source+Sans+3:wght@300;400;600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --navy: #1a2640;
+      --accent: #b5460f;
+      --light: #f5f2ec;
+      --mid: #e8e2d8;
+      --text: #2c2c2c;
+      --muted: #6b6b6b;
+      --link: #1a5276;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Source Sans 3', sans-serif;
+      font-size: 16px;
+      color: var(--text);
+      background: #fff;
+      line-height: 1.7;
+    }
+    .topbar {
+      background: var(--navy);
+      color: #fff;
+      padding: 0 48px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 6px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .topbar-name {
+      font-family: 'EB Garamond', serif;
+      font-size: 1.15rem;
+      letter-spacing: 0.04em;
+      padding: 14px 0;
+      white-space: nowrap;
+    }
+    .topbar nav { display: flex; flex-wrap: wrap; gap: 0; }
+    .topbar nav a {
+      color: rgba(255,255,255,0.78);
+      text-decoration: none;
+      font-size: 0.78rem;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      padding: 18px 11px;
+      border-bottom: 2px solid transparent;
+      transition: color 0.2s, border-color 0.2s;
+    }
+    .topbar nav a:hover { color:#fff; border-bottom-color: var(--accent); }
 
-  <!--
-    - favicon
-  -->
-  <link rel="shortcut icon" href="./assets/images/logo.ico" type="image/x-icon">
+    /* HERO */
+    .hero-wrap { background: var(--light); border-bottom: 1px solid var(--mid); }
+    .hero {
+      max-width: 980px; margin: 0 auto;
+      padding: 52px 40px 44px;
+      display: flex; gap: 44px; align-items: flex-start;
+    }
+    .hero-photo {
+      width: 155px; height: 185px;
+      object-fit: cover; object-position: top center;
+      border: 3px solid var(--mid);
+      flex-shrink: 0;
+      display: block;
+    }
+    .hero-info h1 {
+      font-family: 'EB Garamond', serif;
+      font-size: 2.2rem; color: var(--navy);
+      line-height: 1.15; margin-bottom: 3px;
+    }
+    .hero-title {
+      font-size: 0.88rem; color: var(--accent);
+      font-weight: 600; letter-spacing: 0.06em;
+      text-transform: uppercase; margin-bottom: 10px;
+    }
+    .hero-affil {
+      font-size: 0.92rem; color: var(--muted); margin-bottom: 14px; line-height: 1.55;
+    }
+    .hero-affil a { color: var(--link); text-decoration: none; }
+    .hero-affil a:hover { text-decoration: underline; }
+    .hero-bio {
+      font-size: 0.94rem; color: var(--text);
+      max-width: 580px; margin-bottom: 20px; line-height: 1.65;
+    }
+    .chips { display: flex; flex-wrap: wrap; gap: 8px; }
+    .chips a {
+      font-size: 0.8rem; color: var(--link);
+      border: 1px solid var(--link);
+      padding: 4px 12px; border-radius: 2px;
+      text-decoration: none;
+      transition: background 0.15s, color 0.15s;
+    }
+    .chips a:hover { background: var(--link); color: #fff; }
 
-  <!--
-    - custom css link
-  -->
-  <link rel="stylesheet" href="./assets/css/style.css">
+    /* LAYOUT */
+    .container { max-width: 980px; margin: 0 auto; padding: 0 40px 70px; }
 
-  <!--
-    - google font link
-  -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    /* SECTION */
+    section {
+      margin-top: 50px;
+      padding-top: 26px;
+      border-top: 2px solid var(--mid);
+    }
+    section h2 {
+      font-family: 'EB Garamond', serif;
+      font-size: 1.5rem; color: var(--navy);
+      margin-bottom: 18px; letter-spacing: 0.01em;
+    }
+    section h3 {
+      font-size: 0.8rem; text-transform: uppercase;
+      letter-spacing: 0.12em; color: var(--muted);
+      margin: 24px 0 10px; font-weight: 600;
+    }
+
+    /* RESEARCH INTERESTS */
+    .tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 8px; }
+    .tags span {
+      background: var(--light); border: 1px solid var(--mid);
+      padding: 5px 14px; font-size: 0.86rem;
+      border-radius: 2px; color: var(--navy);
+    }
+
+    /* ACHIEVEMENTS */
+    .achiev-list { margin-top: 6px; }
+    .achiev-item {
+      display: flex; gap: 12px; align-items: baseline;
+      padding: 8px 0; border-bottom: 1px solid var(--mid);
+      font-size: 0.92rem;
+    }
+    .achiev-item .badge {
+      font-size: 1.05rem; flex-shrink: 0;
+    }
+
+    /* TIMELINE */
+    .timeline { margin-top: 4px; }
+    .tl-item {
+      display: grid;
+      grid-template-columns: 160px 1fr;
+      gap: 6px 24px;
+      margin-bottom: 18px;
+    }
+    .tl-year {
+      font-size: 0.8rem; color: var(--muted);
+      text-align: right; padding-top: 3px;
+      letter-spacing: 0.02em; line-height: 1.4;
+    }
+    .tl-body strong {
+      font-size: 0.95rem; font-weight: 600;
+      color: var(--navy); display: block; margin-bottom: 1px;
+    }
+    .tl-body .inst {
+      font-size: 0.86rem; color: var(--muted); display: block; margin-bottom: 3px;
+    }
+    .tl-body ul {
+      margin: 6px 0 0 16px;
+    }
+    .tl-body ul li {
+      font-size: 0.88rem; color: var(--text); margin-bottom: 4px; line-height: 1.5;
+    }
+
+    /* PUBLICATIONS */
+    .pub-item {
+      margin-bottom: 18px;
+      padding-left: 14px;
+      border-left: 3px solid var(--mid);
+      transition: border-color 0.2s;
+    }
+    .pub-item:hover { border-left-color: var(--accent); }
+    .pub-authors {
+      font-size: 0.82rem; color: var(--muted); margin-bottom: 2px;
+    }
+    .pub-authors strong { color: var(--navy); font-weight: 700; }
+    .pub-title-link {
+      font-size: 0.94rem; font-weight: 600; color: var(--navy);
+      text-decoration: none; display: block; line-height: 1.45; margin-bottom: 3px;
+    }
+    .pub-title-link:hover { color: var(--accent); text-decoration: underline; }
+    .pub-title-nolink {
+      font-size: 0.94rem; font-weight: 600; color: var(--navy);
+      display: block; line-height: 1.45; margin-bottom: 3px;
+    }
+    .pub-venue {
+      font-size: 0.84rem; color: var(--muted);
+    }
+    .pub-venue em { font-style: italic; }
+    .badge-pub {
+      display: inline-block; font-size: 0.72rem;
+      padding: 1px 8px; border-radius: 2px;
+      margin-left: 6px; vertical-align: middle;
+      font-weight: 600; letter-spacing: 0.04em;
+    }
+    .badge-pub.review {
+      background: #fef5ee; border: 1px solid #f0c09a; color: var(--accent);
+    }
+    .badge-pub.submitted {
+      background: #f0f4ff; border: 1px solid #aabde0; color: #2244aa;
+    }
+    .badge-pub.published {
+      background: #edfaf0; border: 1px solid #8ecfa4; color: #1a7a3a;
+    }
+    .pub-doi { font-size: 0.8rem; color: var(--link); text-decoration: none; }
+    .pub-doi:hover { text-decoration: underline; }
+
+    /* SKILLS GRID */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(215px, 1fr));
+      gap: 10px; margin-top: 10px;
+    }
+    .skill-card {
+      background: var(--light); border: 1px solid var(--mid);
+      padding: 11px 16px; border-radius: 2px;
+    }
+    .skill-card .sk-cat {
+      font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.1em;
+      color: var(--accent); font-weight: 600; margin-bottom: 4px;
+    }
+    .skill-card .sk-items {
+      font-size: 0.86rem; color: var(--navy); line-height: 1.5;
+    }
+
+    /* CONTACT TABLE */
+    .ctable { margin-top: 8px; border-collapse: collapse; }
+    .ctable tr td {
+      font-size: 0.9rem; padding: 6px 18px 6px 0;
+      vertical-align: top;
+    }
+    .ctable tr td:first-child {
+      font-size: 0.78rem; text-transform: uppercase;
+      letter-spacing: 0.08em; color: var(--muted);
+      white-space: nowrap; width: 120px; padding-top: 8px;
+    }
+    .ctable a { color: var(--link); text-decoration: none; }
+    .ctable a:hover { text-decoration: underline; }
+
+    /* REFERENCES */
+    .ref-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 16px; margin-top: 6px;
+    }
+    .ref-card {
+      background: var(--light); border: 1px solid var(--mid);
+      padding: 14px 18px; border-radius: 2px;
+    }
+    .ref-card strong { font-size: 0.95rem; color: var(--navy); display: block; margin-bottom: 2px; }
+    .ref-card .ref-role { font-size: 0.83rem; color: var(--muted); font-style: italic; margin-bottom: 6px; }
+    .ref-card a { font-size: 0.83rem; color: var(--link); text-decoration: none; }
+    .ref-card a:hover { text-decoration: underline; }
+
+    footer {
+      background: var(--navy); color: rgba(255,255,255,0.45);
+      text-align: center; font-size: 0.77rem;
+      padding: 20px; margin-top: 0;
+    }
+
+    @media (max-width: 680px) {
+      .hero { flex-direction: column; padding: 28px 20px; gap: 24px; }
+      .container { padding: 0 20px 50px; }
+      .topbar { padding: 0 16px; }
+      .topbar-name { font-size: 1rem; }
+      .tl-item { grid-template-columns: 1fr; }
+      .tl-year { text-align: left; }
+    }
+  </style>
 </head>
-
 <body>
 
-  <!--
-    - #MAIN
-  -->
+<div class="topbar">
+  <div class="topbar-name">Rahul Singh</div>
+  <nav>
+    <a href="#about">About</a>
+    <a href="#research">Research</a>
+    <a href="#publications">Publications</a>
+    <a href="#education">Education</a>
+    <a href="#experience">Experience</a>
+    <a href="#achievements">Achievements</a>
+    <a href="#skills">Skills</a>
+    <a href="#contact">Contact</a>
+  </nav>
+</div>
 
-  <main>
-
-    <!--
-      - #SIDEBAR
-    -->
-
-    <aside class="sidebar" data-sidebar>
-
-      <div class="sidebar-info">
-
-        <figure class="avatar-box">
-          <img src="./assets/images/my-avatar.png" alt="Rahul Singh" width="80">
-        </figure>
-
-        <div class="info-content">
-          <h1 class="name" title="Rahul Singh">Rahul Singh</h1>
-
-          <p class="title">PhD Researcher & Motor Control Engineer</p>
-        </div>
-
-        <button class="info_more-btn" data-sidebar-btn>
-          <span>Show Contacts</span>
-
-          <ion-icon name="chevron-down"></ion-icon>
-        </button>
-
+<!-- HERO -->
+<div class="hero-wrap">
+  <div class="hero">
+    <img class="hero-photo"
+         src="data:image/jpeg;base64,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"
+         alt="Rahul Singh" />
+    <div class="hero-info">
+      <h1>Rahul Singh</h1>
+      <div class="hero-title">PhD Researcher &mdash; Control &amp; Power Electronics</div>
+      <div class="hero-affil">
+        Department of Electrical Engineering<br/>
+        Indian Institute of Technology Jodhpur (IIT Jodhpur)<br/>
+        Supervisor: <a href="mailto:df@iitj.ac.in">Prof. Deepakkumar M. Fulwani</a>
       </div>
-
-      <div class="sidebar-info_more">
-
-        <div class="separator"></div>
-
-        <ul class="contacts-list">
-
-          <li class="contact-item">
-
-            <div class="icon-box">
-              <ion-icon name="mail-outline"></ion-icon>
-            </div>
-
-            <div class="contact-info">
-              <p class="contact-title">Email</p>
-
-              <a href="mailto:singh.67@iitj.ac.in" class="contact-link">singh.67@iitj.ac.in</a>
-            </div>
-
-          </li>
-
-          <li class="contact-item">
-
-            <div class="icon-box">
-              <ion-icon name="phone-portrait-outline"></ion-icon>
-            </div>
-
-            <div class="contact-info">
-              <p class="contact-title">Phone</p>
-
-              <a href="tel:+917275915933" class="contact-link">+91 72759 15933</a>
-            </div>
-
-          </li>
-
-          <li class="contact-item">
-
-            <div class="icon-box">
-              <ion-icon name="calendar-outline"></ion-icon>
-            </div>
-
-            <div class="contact-info">
-              <p class="contact-title">Birthday</p>
-
-              <time datetime="1993-07-01">July 01, 1993</time>
-            </div>
-
-          </li>
-
-          <li class="contact-item">
-
-            <div class="icon-box">
-              <ion-icon name="location-outline"></ion-icon>
-            </div>
-
-            <div class="contact-info">
-              <p class="contact-title">Location</p>
-
-              <address>IIT Jodhpur, Rajasthan, India</address>
-            </div>
-
-          </li>
-
-        </ul>
-
-        <div class="separator"></div>
-
-        <ul class="social-list">
-
-          <li class="social-item">
-            <a href="https://www.linkedin.com/in/rahul-singh-2b5bb8b5/" class="social-link">
-              <ion-icon name="logo-linkedin"></ion-icon>
-            </a>
-          </li>
-
-        </ul>
-
+      <p class="hero-bio">
+        My research focuses on advanced sensorless control strategies for electric vehicle drivetrains
+        and industrial motor drives, with expertise in sliding mode control, MRAS-based estimation,
+        and real-time hardware implementation on dSPACE and STM32 platforms.
+        I have <strong>10+ publications</strong> in IEEE and Elsevier venues and industry experience
+        as a Senior Motor Control Engineer.
+      </p>
+      <div class="chips">
+        <a href="mailto:singh.67@iitj.ac.in">✉ singh.67@iitj.ac.in</a>
+        <a href="https://scholar.google.com/citations?user=Uf0lQlIAAAAJ&hl=en" target="_blank">Google Scholar</a>
+        <a href="https://www.linkedin.com/in/rahul-singh-2b5bb8b5/" target="_blank">LinkedIn</a>
+        <a href="#contact">More Contacts ↓</a>
       </div>
-
-    </aside>
-
-
-
-
-
-    <!--
-      - #main-content
-    -->
-
-    <div class="main-content">
-
-      <!--
-        - #NAVBAR
-      -->
-
-      <nav class="navbar">
-
-        <ul class="navbar-list">
-
-          <li class="navbar-item">
-            <button class="navbar-link  active" data-nav-link>About</button>
-          </li>
-
-          <li class="navbar-item">
-            <button class="navbar-link" data-nav-link>Resume</button>
-          </li>
-
-          <li class="navbar-item">
-            <button class="navbar-link" data-nav-link>Projects</button>
-          </li>
-
-          <li class="navbar-item">
-            <button class="navbar-link" data-nav-link>Publications</button>
-          </li>
-
-          <li class="navbar-item">
-            <button class="navbar-link" data-nav-link>Contact</button>
-          </li>
-
-        </ul>
-
-      </nav>
-
-
-
-
-
-      <!--
-        - #ABOUT
-      -->
-
-      <article class="about  active" data-page="about">
-
-        <header>
-          <h2 class="h2 article-title">About me</h2>
-        </header>
-
-        <section class="about-text">
-          <p>
-            I am a PhD researcher at IIT Jodhpur specializing in Control & Power Electronics, with expertise in motor control, embedded systems, and hardware design. My research focuses on developing advanced sensorless control strategies for electric vehicle drivetrains and industrial motor drives.
-          </p>
-
-          <p>
-            With a strong foundation in electrical engineering from AMU Aligarh and industry experience as a Senior Motor Control Engineer at Reakar Electric India, I bridge the gap between academic research and real-world applications in power electronics and motor control systems.
-          </p>
-        </section>
-
-
-        <!--
-          - service
-        -->
-
-        <section class="service">
-
-          <h3 class="h3 service-title">What i'm doing</h3>
-
-          <ul class="service-list">
-
-            <li class="service-item">
-
-              <div class="service-icon-box">
-                <img src="./assets/images/icon-design.svg" alt="motor control icon" width="40">
-              </div>
-
-              <div class="service-content-box">
-                <h4 class="h4 service-item-title">Motor Control</h4>
-
-                <p class="service-item-text">
-                  FOC, Integral Sliding Mode Control, MRAS, sensorless speed estimation for EV and industrial drives.
-                </p>
-              </div>
-
-            </li>
-
-            <li class="service-item">
-
-              <div class="service-icon-box">
-                <img src="./assets/images/icon-dev.svg" alt="embedded systems icon" width="40">
-              </div>
-
-              <div class="service-content-box">
-                <h4 class="h4 service-item-title">Embedded Systems</h4>
-
-                <p class="service-item-text">
-                  Real-time control implementation on dSPACE, STM32, OPAL-RT, and Arduino platforms.
-                </p>
-              </div>
-
-            </li>
-
-            <li class="service-item">
-
-              <div class="service-icon-box">
-                <img src="./assets/images/icon-app.svg" alt="hardware design icon" width="40">
-              </div>
-
-              <div class="service-content-box">
-                <h4 class="h4 service-item-title">Hardware Design</h4>
-
-                <p class="service-item-text">
-                  Gate drivers, power converters, PCB schematics, and complete motor drive system design.
-                </p>
-              </div>
-
-            </li>
-
-            <li class="service-item">
-
-              <div class="service-icon-box">
-                <img src="./assets/images/icon-photo.svg" alt="research icon" width="40">
-              </div>
-
-              <div class="service-content-box">
-                <h4 class="h4 service-item-title">Research & Publications</h4>
-
-                <p class="service-item-text">
-                  10+ publications in IEEE and Elsevier journals on motor control and microgrid systems.
-                </p>
-              </div>
-
-            </li>
-
-          </ul>
-
-        </section>
-
-
-
-
-      </article>
-
-
-
-
-
-      <!--
-        - #RESUME
-      -->
-
-      <article class="resume" data-page="resume">
-
-        <header>
-          <h2 class="h2 article-title">Resume</h2>
-        </header>
-
-        <section class="timeline">
-
-          <div class="title-wrapper">
-            <div class="icon-box">
-              <ion-icon name="book-outline"></ion-icon>
-            </div>
-
-            <h3 class="h3">Education</h3>
-          </div>
-
-          <ol class="timeline-list">
-
-            <li class="timeline-item">
-
-              <h4 class="h4 timeline-item-title">PhD in Control &amp; Power Electronics</h4>
-
-              <span>2019 — 2026</span>
-
-              <p class="timeline-text">
-                Indian Institute of Technology (IIT) Jodhpur — CGPA: 8.25 (Honours)
-              </p>
-
-            </li>
-
-            <li class="timeline-item">
-
-              <h4 class="h4 timeline-item-title">M.Tech in Power Systems &amp; Drives</h4>
-
-              <span>2017 — 2019</span>
-
-              <p class="timeline-text">
-                Aligarh Muslim University (AMU), Aligarh — CPI: 8.66 (Honours)
-              </p>
-
-            </li>
-
-            <li class="timeline-item">
-
-              <h4 class="h4 timeline-item-title">B.Tech in Electrical Engineering</h4>
-
-              <span>2012 — 2016</span>
-
-              <p class="timeline-text">
-                Aligarh Muslim University (AMU), Aligarh — CPI: 8.52 (Honours)
-              </p>
-
-            </li>
-
-          </ol>
-
-        </section>
-
-        <section class="timeline">
-
-          <div class="title-wrapper">
-            <div class="icon-box">
-              <ion-icon name="book-outline"></ion-icon>
-            </div>
-
-            <h3 class="h3">Experience</h3>
-          </div>
-
-          <ol class="timeline-list">
-
-            <li class="timeline-item">
-
-              <h4 class="h4 timeline-item-title">Senior Motor Control Engineer</h4>
-
-              <span>Sept 2025 — Present</span>
-
-              <p class="timeline-text">
-                Reakar Electric India — Controller verification, encoder calibration and filtering, motor modelling and validation of control algorithms using real-time hardware data.
-              </p>
-
-            </li>
-
-            <li class="timeline-item">
-
-              <h4 class="h4 timeline-item-title">PhD Researcher</h4>
-
-              <span>2019 — 2026</span>
-
-              <p class="timeline-text">
-                IIT Jodhpur — Developed advanced sensorless control strategies for EV drivetrains and industrial motor drives. Published 10+ papers in IEEE and Elsevier journals.
-              </p>
-
-            </li>
-
-            <li class="timeline-item">
-
-              <h4 class="h4 timeline-item-title">Research Intern</h4>
-
-              <span>2018 — 2019</span>
-
-              <p class="timeline-text">
-                AMU Aligarh — Developed supervisory control for residential microgrids using cost-effective controllers for solar power utilization.
-              </p>
-
-            </li>
-
-          </ol>
-
-        </section>
-
-        <section class="skill">
-
-          <h3 class="h3 skills-title">My skills</h3>
-
-          <ul class="skills-list content-card">
-
-            <li class="skills-item">
-
-              <div class="title-wrapper">
-                <h5 class="h5">Motor Control (FOC, ISMC, MRAS)</h5>
-                <data value="90">90%</data>
-              </div>
-
-              <div class="skill-progress-bg">
-                <div class="skill-progress-fill" style="width: 90%;"></div>
-              </div>
-
-            </li>
-
-            <li class="skills-item">
-
-              <div class="title-wrapper">
-                <h5 class="h5">Embedded Systems (dSPACE, STM32)</h5>
-                <data value="85">85%</data>
-              </div>
-
-              <div class="skill-progress-bg">
-                <div class="skill-progress-fill" style="width: 85%;"></div>
-              </div>
-
-            </li>
-
-            <li class="skills-item">
-
-              <div class="title-wrapper">
-                <h5 class="h5">Hardware Design (PCB, Gate Drivers)</h5>
-                <data value="80">80%</data>
-              </div>
-
-              <div class="skill-progress-bg">
-                <div class="skill-progress-fill" style="width: 80%;"></div>
-              </div>
-
-            </li>
-
-            <li class="skills-item">
-
-              <div class="title-wrapper">
-                <h5 class="h5">MATLAB/Simulink</h5>
-                <data value="95">95%</data>
-              </div>
-
-              <div class="skill-progress-bg">
-                <div class="skill-progress-fill" style="width: 95%;"></div>
-              </div>
-
-            </li>
-
-          </ul>
-
-        </section>
-
-      </article>
-
-
-
-
-
-      <!--
-        - #PORTFOLIO
-      -->
-
-      <article class="portfolio" data-page="projects">
-
-        <header>
-          <h2 class="h2 article-title">Projects</h2>
-        </header>
-
-        <section class="projects">
-
-          <ul class="filter-list">
-
-            <li class="filter-item">
-              <button class="active" data-filter-btn>All</button>
-            </li>
-
-            <li class="filter-item">
-              <button data-filter-btn>Research</button>
-            </li>
-
-            <li class="filter-item">
-              <button data-filter-btn>Projects</button>
-            </li>
-
-          </ul>
-
-          <div class="filter-select-box">
-
-            <button class="filter-select" data-select>
-
-              <div class="select-value" data-selecct-value>Select category</div>
-
-              <div class="select-icon">
-                <ion-icon name="chevron-down"></ion-icon>
-              </div>
-
-            </button>
-
-            <ul class="select-list">
-
-              <li class="select-item">
-                <button data-select-item>All</button>
-              </li>
-
-              <li class="select-item">
-                <button data-select-item>Research</button>
-              </li>
-
-              <li class="select-item">
-                <button data-select-item>Projects</button>
-              </li>
-
-            </ul>
-
-          </div>
-
-          <ul class="project-list">
-
-            <li class="project-item  active" data-filter-item data-category="research">
-              <a href="#">
-
-                <figure class="project-img">
-                  <div class="project-item-icon-box">
-                    <ion-icon name="eye-outline"></ion-icon>
-                  </div>
-
-                  <img src="./assets/images/project-1.jpg" alt="3.7 kW Motor Drive System" loading="lazy">
-                </figure>
-
-                <h3 class="project-title">3.7 kW Motor Drive System</h3>
-
-                <p class="project-category">Research</p>
-
-              </a>
-            </li>
-
-            <li class="project-item  active" data-filter-item data-category="research">
-              <a href="#">
-
-                <figure class="project-img">
-                  <div class="project-item-icon-box">
-                    <ion-icon name="eye-outline"></ion-icon>
-                  </div>
-
-                  <img src="./assets/images/project-2.png" alt="Sensorless Control for EV Drivetrain" loading="lazy">
-                </figure>
-
-                <h3 class="project-title">Sensorless Control for EV Drivetrain</h3>
-
-                <p class="project-category">Research</p>
-
-              </a>
-            </li>
-
-            <li class="project-item  active" data-filter-item data-category="research">
-              <a href="#">
-
-                <figure class="project-img">
-                  <div class="project-item-icon-box">
-                    <ion-icon name="eye-outline"></ion-icon>
-                  </div>
-
-                  <img src="./assets/images/project-3.jpg" alt="Solar Microgrid Controller" loading="lazy">
-                </figure>
-
-                <h3 class="project-title">Solar Microgrid Controller</h3>
-
-                <p class="project-category">Research</p>
-
-              </a>
-            </li>
-
-            <li class="project-item  active" data-filter-item data-category="projects">
-              <a href="#">
-
-                <figure class="project-img">
-                  <div class="project-item-icon-box">
-                    <ion-icon name="eye-outline"></ion-icon>
-                  </div>
-
-                  <img src="./assets/images/project-4.png" alt="Harmonics Analysis - 3MW Solar PV" loading="lazy">
-                </figure>
-
-                <h3 class="project-title">Harmonics Analysis - 3MW Solar PV</h3>
-
-                <p class="project-category">Projects</p>
-
-              </a>
-            </li>
-
-            <li class="project-item  active" data-filter-item data-category="projects">
-              <a href="#">
-
-                <figure class="project-img">
-                  <div class="project-item-icon-box">
-                    <ion-icon name="eye-outline"></ion-icon>
-                  </div>
-
-                  <img src="./assets/images/project-5.png" alt="Automated Traffic System (SCADA)" loading="lazy">
-                </figure>
-
-                <h3 class="project-title">Automated Traffic System (SCADA)</h3>
-
-                <p class="project-category">Projects</p>
-
-              </a>
-            </li>
-
-            <li class="project-item  active" data-filter-item data-category="projects">
-              <a href="#">
-
-                <figure class="project-img">
-                  <div class="project-item-icon-box">
-                    <ion-icon name="eye-outline"></ion-icon>
-                  </div>
-
-                  <img src="./assets/images/project-6.png" alt="Hybrid Microgrid Lab Setup" loading="lazy">
-                </figure>
-
-                <h3 class="project-title">Hybrid Microgrid Lab Setup</h3>
-
-                <p class="project-category">Projects</p>
-
-              </a>
-            </li>
-
-          </ul>
-
-        </section>
-
-      </article>
-
-
-
-
-
-      <!--
-        - #BLOG
-      -->
-
-      <article class="blog" data-page="publications">
-
-        <header>
-          <h2 class="h2 article-title">Publications</h2>
-        </header>
-
-        <section class="blog-posts">
-
-          <ul class="blog-posts-list">
-
-            <li class="blog-post-item">
-              <a href="https://doi.org/10.1109/PEDES56012.2022.10080494">
-
-                <figure class="blog-banner-box">
-                  <img src="./assets/images/blog-1.jpg" alt="MRAS-based Integral Sliding Mode Control of Electric Vehicles" loading="lazy">
-                </figure>
-
-                <div class="blog-content">
-
-                  <div class="blog-meta">
-                    <p class="blog-category">IEEE Conference</p>
-
-                    <span class="dot"></span>
-
-                    <time datetime="2022-12-01">Dec 2022</time>
-                  </div>
-
-                  <h3 class="h3 blog-item-title">MRAS-based Integral Sliding Mode Control of Electric Vehicles</h3>
-
-                  <p class="blog-text">
-                    Published in 10th IEEE PEDES 2022. DOI: 10.1109/PEDES56012.2022.10080494
-                  </p>
-
-                </div>
-
-              </a>
-            </li>
-
-            <li class="blog-post-item">
-              <a href="#">
-
-                <figure class="blog-banner-box">
-                  <img src="./assets/images/blog-2.jpg" alt="Active Disturbance Rejection in EV Drives Using ASISMC" loading="lazy">
-                </figure>
-
-                <div class="blog-content">
-
-                  <div class="blog-meta">
-                    <p class="blog-category">IEEE/CES Journal</p>
-
-                    <span class="dot"></span>
-
-                    <time datetime="2025-01-01">2025</time>
-                  </div>
-
-                  <h3 class="h3 blog-item-title">Active Disturbance Rejection in EV Drives Using ASISMC</h3>
-
-                  <p class="blog-text">
-                    Published in CES Transactions on Electrical Machines and Systems, vol. 9, no. 4, pp. 463-472.
-                  </p>
-
-                </div>
-
-              </a>
-            </li>
-
-            <li class="blog-post-item">
-              <a href="#">
-
-                <figure class="blog-banner-box">
-                  <img src="./assets/images/blog-3.jpg" alt="Low Speed Performance Enhancement Through AISMAC" loading="lazy">
-                </figure>
-
-                <div class="blog-content">
-
-                  <div class="blog-meta">
-                    <p class="blog-category">IEEE Journal</p>
-
-                    <span class="dot"></span>
-
-                    <time datetime="2026-01-01">2026</time>
-                  </div>
-
-                  <h3 class="h3 blog-item-title">Low Speed Performance Enhancement Through AISMAC</h3>
-
-                  <p class="blog-text">
-                    R1 submitted to IEEE Transactions on Industrial Electronics.
-                  </p>
-
-                </div>
-
-              </a>
-            </li>
-
-            <li class="blog-post-item">
-              <a href="https://doi.org/10.1016/J.IJEPES.2021.107170">
-
-                <figure class="blog-banner-box">
-                  <img src="./assets/images/blog-4.jpg" alt="Supervisory Control for Solar Energy in Residential Microgrids" loading="lazy">
-                </figure>
-
-                <div class="blog-content">
-
-                  <div class="blog-meta">
-                    <p class="blog-category">Elsevier Journal</p>
-
-                    <span class="dot"></span>
-
-                    <time datetime="2021-11-01">Nov 2021</time>
-                  </div>
-
-                  <h3 class="h3 blog-item-title">Supervisory Control for Solar Energy in Residential Microgrids</h3>
-
-                  <p class="blog-text">
-                    Published in International Journal of Electrical Power &amp; Energy Systems, vol. 132.
-                  </p>
-
-                </div>
-
-              </a>
-            </li>
-
-            <li class="blog-post-item">
-              <a href="#">
-
-                <figure class="blog-banner-box">
-                  <img src="./assets/images/blog-5.jpg" alt="Supervisory Control for Solar PV-Based Microgrid" loading="lazy">
-                </figure>
-
-                <div class="blog-content">
-
-                  <div class="blog-meta">
-                    <p class="blog-category">Elsevier Book Chapter</p>
-
-                    <span class="dot"></span>
-
-                    <time datetime="2023-01-01">Jan 2023</time>
-                  </div>
-
-                  <h3 class="h3 blog-item-title">Supervisory Control for Solar PV-Based Microgrid</h3>
-
-                  <p class="blog-text">
-                    Published in Emerging Trends in Energy Storage Systems and Industrial Applications, pp. 571-593.
-                  </p>
-
-                </div>
-
-              </a>
-            </li>
-
-            <li class="blog-post-item">
-              <a href="https://doi.org/10.1007/978-981-16-9008-2_25">
-
-                <figure class="blog-banner-box">
-                  <img src="./assets/images/blog-6.jpg" alt="Hybrid Microgrid Setup for Electrical Engineering Students" loading="lazy">
-                </figure>
-
-                <div class="blog-content">
-
-                  <div class="blog-meta">
-                    <p class="blog-category">Springer</p>
-
-                    <span class="dot"></span>
-
-                    <time datetime="2022-01-01">2022</time>
-                  </div>
-
-                  <h3 class="h3 blog-item-title">Hybrid Microgrid Setup for Electrical Engineering Students</h3>
-
-                  <p class="blog-text">
-                    Published in Lecture Notes in Electrical Engineering, vol. 847, pp. 261-275.
-                  </p>
-
-                </div>
-
-              </a>
-            </li>
-
-          </ul>
-
-        </section>
-
-      </article>
-
-
-
-
-
-      <!--
-        - #CONTACT
-      -->
-
-      <article class="contact" data-page="contact">
-
-        <header>
-          <h2 class="h2 article-title">Contact</h2>
-        </header>
-
-        <section class="mapbox" data-mapbox>
-          <figure>
-            <iframe
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3577.7!2d72.8527!3d26.4722!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2sIIT+Jodhpur!5e0!3m2!1sen!2sin!4v1"
-              width="400" height="300" loading="lazy"></iframe>
-          </figure>
-        </section>
-
-        <section class="contact-form">
-
-          <h3 class="h3 form-title">Contact Form</h3>
-
-          <form action="#" class="form" data-form>
-
-            <div class="input-wrapper">
-              <input type="text" name="fullname" class="form-input" placeholder="Full name" required data-form-input>
-
-              <input type="email" name="email" class="form-input" placeholder="Email address" required data-form-input>
-            </div>
-
-            <textarea name="message" class="form-input" placeholder="Your Message" required data-form-input></textarea>
-
-            <button class="form-btn" type="submit" disabled data-form-btn>
-              <ion-icon name="paper-plane"></ion-icon>
-              <span>Send Message</span>
-            </button>
-
-          </form>
-
-        </section>
-
-      </article>
-
+    </div>
+  </div>
+</div>
+
+<div class="container">
+
+  <!-- ABOUT -->
+  <section id="about">
+    <h2>About</h2>
+    <p style="font-size:0.94rem;margin-bottom:10px;">
+      I am a PhD researcher at IIT Jodhpur specialising in Control &amp; Power Electronics under the supervision of
+      Prof. Deepakkumar M. Fulwani. My doctoral work centres on developing advanced sensorless control
+      strategies — including Integral Sliding Mode Control (ISMC), MRAS-based estimation, and Adaptive Super-Twisting
+      SMC — for electric vehicle (EV) drivetrains and industrial motor drives, with a particular focus on
+      PMaSynRM drives using FOC and MTPA.
+    </p>
+    <p style="font-size:0.94rem;margin-bottom:10px;">
+      I hold an M.Tech (Power Systems &amp; Drives, CPI: 8.66) and B.Tech (Electrical Engineering, CPI: 8.52)
+      from Aligarh Muslim University, Aligarh, and a PhD (CGPA: 8.25, Honours) from IIT Jodhpur.
+      I am a three-time GATE qualifier (2016–2018) and a recipient of the
+      <strong>1st Prize at the INAE-SERB Youth Conclave 2022</strong> for a technical paper presentation.
+    </p>
+    <p style="font-size:0.94rem;">
+      Alongside research, I serve as Senior Motor Control Engineer at <strong>Reakar Electric India</strong>
+      (Sept 2025–Present) and was President of the EK Bharat Shrestha Bharat (EBSB) chapter at IIT Jodhpur (2021–2025).
+    </p>
+  </section>
+
+  <!-- RESEARCH INTERESTS -->
+  <section id="research">
+    <h2>Research Interests</h2>
+    <div class="tags">
+      <span>Sensorless Motor Drives</span>
+      <span>Field-Oriented Control (FOC)</span>
+      <span>Integral Sliding Mode Control (ISMC)</span>
+      <span>MRAS-based Speed Estimation</span>
+      <span>Super-Twisting SMC</span>
+      <span>MTPA Control</span>
+      <span>PMaSynRM Drives</span>
+      <span>Active Disturbance Rejection</span>
+      <span>Electric Vehicle Drivetrains (E2W / E3W)</span>
+      <span>Industrial Motor Drives</span>
+      <span>DC/AC Microgrids</span>
+      <span>Solar PV Energy Management</span>
+      <span>Real-Time Embedded Control</span>
+      <span>dSPACE / STM32 / OPAL-RT</span>
+    </div>
+  </section>
+
+  <!-- PUBLICATIONS -->
+  <section id="publications">
+    <h2>Publications</h2>
+
+    <h3>Journal Articles</h3>
+
+    <div class="pub-item">
+      <div class="pub-authors"><strong>R. Singh</strong>, M. Kachhwaha, and D. Fulwani</div>
+      <span class="pub-title-nolink">Active disturbance rejection and low-speed performance enhancement in EV drives using ASISMC under dynamic load conditions</span>
+      <div class="pub-venue">
+        <em>CES Transactions on Electrical Machines and Systems</em>, vol. 9, no. 4, pp. 463–472, 2025.
+        <span class="badge-pub published">Published</span>
+      </div>
     </div>
 
-  </main>
+    <div class="pub-item">
+      <div class="pub-authors"><strong>R. Singh</strong>, S. M. Amrr, and M. S. Jamil Asghar</div>
+      <a class="pub-title-link" href="https://doi.org/10.1016/J.IJEPES.2021.107170" target="_blank">
+        Supervisory control strategy for the effective solar energy utilization in a residential microgrid system using a cost-effective controller
+      </a>
+      <div class="pub-venue">
+        <em>International Journal of Electrical Power &amp; Energy Systems (Elsevier)</em>, vol. 132, p. 107170, Nov. 2021.
+        <span class="badge-pub published">Published</span>
+        &nbsp;<a class="pub-doi" href="https://doi.org/10.1016/J.IJEPES.2021.107170" target="_blank">DOI: 10.1016/J.IJEPES.2021.107170</a>
+      </div>
+    </div>
 
+    <div class="pub-item">
+      <div class="pub-authors"><strong>R. Singh</strong>, M. Kachhwaha, and D. M. Fulwani</div>
+      <span class="pub-title-nolink">Low speed performance enhancement of low power electric drives through AISMAC</span>
+      <div class="pub-venue">
+        <em>IEEE Transactions on Industrial Electronics</em>, 2026.
+        <span class="badge-pub review">R1 Submitted</span>
+      </div>
+    </div>
 
+    <div class="pub-item">
+      <div class="pub-authors"><strong>R. Singh</strong>, M. Kachhwaha, and D. Fulwani</div>
+      <span class="pub-title-nolink">Disturbance resilient control of PM-assisted SynRM using adaptive super twisting integral SMC</span>
+      <div class="pub-venue">
+        <em>IEEE Transactions on Industrial Electronics</em>, 2026.
+        <span class="badge-pub review">Under Review</span>
+      </div>
+    </div>
 
+    <div class="pub-item">
+      <div class="pub-authors"><strong>R. Singh</strong> and D. Fulwani</div>
+      <span class="pub-title-nolink">Robust field-oriented control of permanent magnet assisted synchronous reluctance motor drives under dynamic load disturbances</span>
+      <div class="pub-venue">
+        <em>IEEE Transactions on Industrial Electronics</em>, 2026.
+        <span class="badge-pub submitted">To Be Submitted</span>
+      </div>
+    </div>
 
+    <div class="pub-item">
+      <div class="pub-authors"><strong>R. Singh</strong> and D. Fulwani</div>
+      <span class="pub-title-nolink">Maximum torque per ampere adaptive robust control of PMaSynRM drives under industrial loading conditions</span>
+      <div class="pub-venue">
+        2026. <span class="badge-pub submitted">To Be Submitted</span>
+      </div>
+    </div>
 
+    <h3>Book Chapters</h3>
 
-  <!--
-    - custom js link
-  -->
-  <script src="./assets/js/script.js"></script>
+    <div class="pub-item">
+      <div class="pub-authors"><strong>R. Singh</strong>, S. M. Amrr, A. S. Saidi, and M. S. J. Asghar</div>
+      <a class="pub-title-link" href="https://doi.org/10.1016/B978-0-323-90521-3.00018-1" target="_blank">
+        Supervisory control strategy for a customized solar photovoltaic-based microgrid with a battery storage system: an experimental approach
+      </a>
+      <div class="pub-venue">
+        <em>Emerging Trends in Energy Storage Systems and Industrial Applications</em> (Elsevier), pp. 571–593, Jan. 2023.
+        <span class="badge-pub published">Published</span>
+        &nbsp;<a class="pub-doi" href="https://doi.org/10.1016/B978-0-323-90521-3.00018-1" target="_blank">DOI →</a>
+      </div>
+    </div>
 
-  <!--
-    - ionicon link
-  -->
-  <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
-  <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+    <div class="pub-item">
+      <div class="pub-authors"><strong>R. Singh</strong>, M. S. Alam, F. Ahmad, M. S. J. Asghar, and Y. Rafat</div>
+      <a class="pub-title-link" href="https://doi.org/10.1007/978-981-16-9008-2_25" target="_blank">
+        Hybrid Microgrid Set up in Laboratory for Practical Alimentation of Electrical Engineering Students
+      </a>
+      <div class="pub-venue">
+        <em>Lecture Notes in Electrical Engineering (Springer)</em>, vol. 847, pp. 261–275, 2022.
+        <span class="badge-pub published">Published</span>
+        &nbsp;<a class="pub-doi" href="https://doi.org/10.1007/978-981-16-9008-2_25" target="_blank">DOI: 10.1007/978-981-16-9008-2_25</a>
+      </div>
+    </div>
+
+    <h3>Conference Papers</h3>
+
+    <div class="pub-item">
+      <div class="pub-authors"><strong>R. Singh</strong>, M. Kachhwaha, and D. M. Fulwani</div>
+      <a class="pub-title-link" href="https://doi.org/10.1109/PEDES56012.2022.10080494" target="_blank">
+        MRAS-based Integral Sliding Mode Control of Electric Vehicles under Speed and Load Torque Fluctuations
+      </a>
+      <div class="pub-venue">
+        <em>10th IEEE International Conference on Power Electronics, Drives and Energy Systems (PEDES 2022)</em>, Dec. 2022.
+        <span class="badge-pub published">Published</span>
+        &nbsp;<a class="pub-doi" href="https://doi.org/10.1109/PEDES56012.2022.10080494" target="_blank">DOI: 10.1109/PEDES56012.2022.10080494</a>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- EDUCATION -->
+  <section id="education">
+    <h2>Education</h2>
+    <div class="timeline">
+
+      <div class="tl-item">
+        <div class="tl-year">2019 &ndash; 2026</div>
+        <div class="tl-body">
+          <strong>PhD in Control &amp; Power Electronics</strong>
+          <span class="inst">Indian Institute of Technology (IIT) Jodhpur &mdash; CGPA: 8.25 (Honours)</span>
+          Supervisor: Prof. Deepakkumar M. Fulwani<br/>
+          <small style="color:var(--muted)">Thesis focus: Sensorless control of PMaSynRM drives for EV and industrial applications</small>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-year">2017 &ndash; 2019</div>
+        <div class="tl-body">
+          <strong>M.Tech in Power Systems &amp; Drives</strong>
+          <span class="inst">Aligarh Muslim University (AMU), Aligarh &mdash; CPI: 8.66 (Honours)</span>
+          Dissertation: Low-cost supervisory controller for solar PV utilisation in residential microgrids
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-year">2012 &ndash; 2016</div>
+        <div class="tl-body">
+          <strong>B.Tech in Electrical Engineering</strong>
+          <span class="inst">Aligarh Muslim University (AMU), Aligarh &mdash; CPI: 8.52 (Honours)</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section id="experience">
+    <h2>Experience</h2>
+    <div class="timeline">
+
+      <div class="tl-item">
+        <div class="tl-year">Sept 2025 &ndash; Present</div>
+        <div class="tl-body">
+          <strong>Senior Motor Control Engineer</strong>
+          <span class="inst">Reakar Electric India</span>
+          <ul>
+            <li>Controller verification and validation using real-time hardware data</li>
+            <li>Encoder calibration and signal filtering</li>
+            <li>Motor modelling and validation of embedded control algorithms</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-year">2019 &ndash; 2026</div>
+        <div class="tl-body">
+          <strong>PhD Researcher</strong>
+          <span class="inst">IIT Jodhpur (Company-Sponsored by Bharat Bijlee)</span>
+          <ul>
+            <li>Designed and built a complete 3.7 kW PMaSynRM motor drive system including PCB schematics, gate driver circuits, auxiliary DC-DC power supply, and shunt-based current sensing</li>
+            <li>Developed sensorless control strategies (ISMC, ASISMC, ASTISMC) for EV drivetrains targeting load variation, parameter uncertainty, and speed oscillations</li>
+            <li>Applied FOC &amp; MTPA frameworks to PMaSynRM drives for improved efficiency</li>
+            <li>Validated all strategies on dSPACE/MicroLabBox (1202, 1104) under NEDC and UDDS driving cycles</li>
+            <li>Utilised STM32F407 microcontroller for real-time embedded motor control</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-year">2018 &ndash; 2019</div>
+        <div class="tl-body">
+          <strong>M.Tech Research / Intern</strong>
+          <span class="inst">AMU Aligarh</span>
+          <ul>
+            <li>Developed supervisory control for residential microgrids managing power flow between solar, battery, grid, and loads using a low-cost Arduino controller</li>
+            <li>Prioritised critical loads to maintain supply under limited energy conditions, reducing grid dependence</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ACHIEVEMENTS -->
+  <section id="achievements">
+    <h2>Achievements &amp; Recognition</h2>
+    <div class="achiev-list">
+      <div class="achiev-item">
+        <span class="badge">🏆</span>
+        <span><strong>1st Prize — INAE-SERB Youth Conclave 2022</strong> (Technical Paper Presentation)</span>
+      </div>
+      <div class="achiev-item">
+        <span class="badge">🥉</span>
+        <span><strong>3rd Rank in India — ACM Ideathon on Sustainable Systems 2022</strong></span>
+      </div>
+      <div class="achiev-item">
+        <span class="badge">🎯</span>
+        <span><strong>GATE Qualified — 3 times</strong> (2016, 2017, 2018) in Electrical Engineering</span>
+      </div>
+      <div class="achiev-item">
+        <span class="badge">🏆</span>
+        <span><strong>1st Prize — Article Writing, TARIN'16</strong> (Institute Magazine Competition)</span>
+      </div>
+      <div class="achiev-item">
+        <span class="badge">🎓</span>
+        <span><strong>Level-6 Rooftop Solar PV Entrepreneur</strong> — NSDC / Skill India Certification</span>
+      </div>
+      <div class="achiev-item">
+        <span class="badge">👥</span>
+        <span><strong>President, EK Bharat Shrestha Bharat (EBSB)</strong>, IIT Jodhpur (2021–2025)</span>
+      </div>
+      <div class="achiev-item">
+        <span class="badge">📋</span>
+        <span><strong>IFAC Workshop Participant</strong> — International Federation of Automatic Control, IIT Jodhpur, 2025</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section id="skills">
+    <h2>Technical Skills</h2>
+    <div class="skills-grid">
+      <div class="skill-card">
+        <div class="sk-cat">Motor Control</div>
+        <div class="sk-items">FOC, ISMC, MRAS, MTPA, Sensorless Estimation, Super-Twisting SMC</div>
+      </div>
+      <div class="skill-card">
+        <div class="sk-cat">Hardware Platforms</div>
+        <div class="sk-items">dSPACE MicroLabBox (1202, 1104), OPAL-RT (Basic), STM32F407, Arduino</div>
+      </div>
+      <div class="skill-card">
+        <div class="sk-cat">Hardware Design</div>
+        <div class="sk-items">Gate drivers, PCB schematics, Power converters, Shunt current sensing, DC-DC aux supply</div>
+      </div>
+      <div class="skill-card">
+        <div class="sk-cat">Software &amp; Tools</div>
+        <div class="sk-items">MATLAB/Simulink, HOMER, OrCAD, ETAP</div>
+      </div>
+      <div class="skill-card">
+        <div class="sk-cat">Applications</div>
+        <div class="sk-items">EV Drivetrains (E2W/E3W), Industrial Motor Drives, Microgrid Optimisation, Solar PV</div>
+      </div>
+      <div class="skill-card">
+        <div class="sk-cat">Certifications</div>
+        <div class="sk-items">Level-6 Rooftop Solar PV Entrepreneur (NSDC/Skill India), EV Design Internship (Pantech)</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <h2>Contact</h2>
+    <table class="ctable">
+      <tr>
+        <td>Email</td>
+        <td>
+          <a href="mailto:singh.67@iitj.ac.in">singh.67@iitj.ac.in</a> &nbsp;|&nbsp;
+          <a href="mailto:rahulamu93@gmail.com">rahulamu93@gmail.com</a>
+        </td>
+      </tr>
+      <tr>
+        <td>Phone</td>
+        <td>
+          <a href="tel:+917275915933">+91 72759 15933</a> &nbsp;|&nbsp;
+          <a href="tel:+918630255365">+91 86302 55365</a>
+        </td>
+      </tr>
+      <tr>
+        <td>Address</td>
+        <td>Room No. 121, B-5 Hostel, IIT Jodhpur, Rajasthan 342037, India</td>
+      </tr>
+      <tr>
+        <td>Google Scholar</td>
+        <td><a href="https://scholar.google.com/citations?user=Uf0lQlIAAAAJ&hl=en" target="_blank">scholar.google.com ↗</a></td>
+      </tr>
+      <tr>
+        <td>LinkedIn</td>
+        <td><a href="https://www.linkedin.com/in/rahul-singh-2b5bb8b5/" target="_blank">linkedin.com/in/rahul-singh-2b5bb8b5 ↗</a></td>
+      </tr>
+    </table>
+
+    <h3>References</h3>
+    <div class="ref-grid">
+      <div class="ref-card">
+        <strong>Prof. Deepakkumar M. Fulwani</strong>
+        <div class="ref-role">Professor, Dept. of Electrical Engineering<br/>IIT Jodhpur, India</div>
+        <a href="mailto:df@iitj.ac.in">df@iitj.ac.in</a>
+      </div>
+      <div class="ref-card">
+        <strong>Dr. Gajendra Singh Chawda</strong>
+        <div class="ref-role">Assistant Professor, Electrical &amp; Computer Engineering<br/>Tuskegee University, USA</div>
+        <a href="mailto:gchawda@tuskegee.edu">gchawda@tuskegee.edu</a>
+      </div>
+      <div class="ref-card">
+        <strong>Prof. Bharat Singh Rajpurohit</strong>
+        <div class="ref-role">Professor, Dept. of Electrical Engineering<br/>IIT Jodhpur, India</div>
+        <a href="mailto:bsr@iitj.ac.in">bsr@iitj.ac.in</a>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<footer>
+  Rahul Singh &nbsp;&middot;&nbsp; PhD Researcher, IIT Jodhpur &nbsp;&middot;&nbsp; Last updated April 2026
+</footer>
 
 </body>
-
 </html>
